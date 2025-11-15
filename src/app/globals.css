@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 15, 23, 42;
+  --background-end-rgb: 30, 41, 59;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+/* Grid layout debugging */
+.grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.3;
+}
+
+.grid-overlay.show {
+  display: block;
+}
+
+.grid-overlay.hide {
+  display: none;
+}
+
+.grid-column {
+  background: linear-gradient(to right, rgba(255,0,0,0.2), rgba(255,0,0,0.2));
+  height: 100vh;
+  border-left: 1px solid rgba(255,0,0,0.5);
+  border-right: 1px solid rgba(255,0,0,0.5);
+}
