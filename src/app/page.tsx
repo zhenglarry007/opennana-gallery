@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Search, X } from 'lucide-react';
-import { mockCards, categories } from '@/lib/data';
+import { simplifiedPrompts, categories } from '@/lib/simplified-data';
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,15 +11,15 @@ export default function Home() {
   const [layoutInfo, setLayoutInfo] = useState('加载中...');
   const [isClient, setIsClient] = useState(false);
 
-  const filteredCards = mockCards.filter(card => {
+  const filteredCards = simplifiedPrompts.filter(card => {
     const matchesSearch = card.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         card.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
-    const matchesCategory = !selectedCategory || card.tags.includes(selectedCategory);
+                         card.category.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = !selectedCategory || selectedCategory === '全部' || card.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
   // Debug layout information
-  console.log('Total cards:', mockCards.length);
+  console.log('Total cards:', simplifiedPrompts.length);
   console.log('Filtered cards:', filteredCards.length);
   console.log('Screen width:', typeof window !== 'undefined' ? window.innerWidth : 'server');
 
@@ -122,7 +122,7 @@ export default function Home() {
               清除筛选
             </button>
             <span className="text-gray-400 text-sm">
-              共 {filteredCards.length}/{mockCards.length} 个案例
+              共 {filteredCards.length}/{simplifiedPrompts.length} 个案例
             </span>
           </div>
 
@@ -149,7 +149,7 @@ export default function Home() {
 
         {/* Layout Debug Info */}
         <div className="mb-4 p-3 bg-slate-700 rounded-lg text-xs text-gray-300">
-          <div>总卡片数: {mockCards.length} | 过滤后: {filteredCards.length}</div>
+          <div>总卡片数: {simplifiedPrompts.length} | 过滤后: {filteredCards.length}</div>
           <div>布局: 移动端1列 → 平板2列 → 小屏桌面3列 → 中屏桌面4列 → 大屏桌面5列</div>
           <div className="mt-2 p-2 bg-slate-600 rounded">
             <strong>当前屏幕尺寸测试:</strong>
