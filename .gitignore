@@ -32,3 +32,9 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Large data files (to avoid GitHub push issues)
+*.png
+opennana-*-data-*.json
+opennana-*-prompts-*.json
+opennana-gallery-data-merged.json
