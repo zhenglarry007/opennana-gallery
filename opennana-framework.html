@@ -548,20 +548,35 @@
         let selectedCategory = null;
         let searchTerm = '';
 
+        const FALLBACK_SMALL = '/assets/fallback-300.png';
+        const FALLBACK_LARGE = '/assets/fallback-600.png';
+        window.FALLBACK_SMALL = FALLBACK_SMALL;
+        window.FALLBACK_LARGE = FALLBACK_LARGE;
+
         // Load data from JSON file
         async function loadData() {
             try {
                 // Load the extracted data
-                const response = await fetch('./opennana-prompts-1763203510095.json');
+                const response = await fetch('/nano_prompts_20251118_183432.json', { cache: 'no-store' });
                 const data = await response.json();
-                
-                // Filter out cards without valid image URLs
-                allCards = (data.prompts || []).filter(card => {
-                    return card.imageUrl && card.imageUrl.trim() !== '' && 
-                           card.title && card.title.trim() !== '';
-                });
-                
-                // Extract unique categories from tags
+
+                const raw = Array.isArray(data) ? data : (data.prompts || []);
+
+                allCards = raw
+                    .map(item => {
+                        const tags = Array.isArray(item.tags)
+                            ? item.tags
+                            : (item.category ? item.category.split(',').map(s => s.trim()).filter(Boolean) : []);
+                        return {
+                            title: item.title || '',
+                            imageUrl: item.imageUrl || item.image || '',
+                            tags,
+                            prompt1: item.prompt1 || '',
+                            prompt2: item.prompt2 || ''
+                        };
+                    })
+                    .filter(card => card.imageUrl && card.imageUrl.trim() !== '' && card.title && card.title.trim() !== '');
+
                 const categorySet = new Set();
                 allCards.forEach(card => {
                     if (card.tags) {
@@ -569,11 +584,15 @@
                     }
                 });
                 categories = Array.from(categorySet).sort();
-                
+
                 filteredCards = [...allCards];
                 renderCategories();
                 renderCards();
                 updateCardCount();
+                const stats = document.getElementById('resultStats');
+                if (stats) {
+                    stats.textContent = `已加载 ${allCards.length} 条数据`;
+                }
             } catch (error) {
                 console.error('Error loading data:', error);
                 document.getElementById('cardsGrid').innerHTML = '<div class="error">加载数据失败</div>';
@@ -683,13 +702,16 @@
             
             const row = Math.floor(index / 5) + 1;
             const col = (index % 5) + 1;
+            const fileName = (card.imageUrl || '').split('/').pop() || '';
+            const localSrc = fileName ? `/assets/images/${fileName}` : window.FALLBACK_SMALL;
+            const imgSrc = localSrc;
             
             cardDiv.innerHTML = `
                 <div class="card-image-container">
-                    <img src="${card.imageUrl || 'https://via.placeholder.com/300x300/334155/93c5fd?text=No+Image'}" 
+                    <img src="${imgSrc}" 
                          alt="${card.title}" 
                          class="card-image"
-                         onerror="this.src='https://via.placeholder.com/300x300/334155/93c5fd?text=No+Image'">
+                         onerror="this.src=window.FALLBACK_SMALL">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">${card.title}</h3>
@@ -707,20 +729,23 @@
             const modal = document.getElementById('modalOverlay');
             const title = document.getElementById('modalTitle');
             const body = document.getElementById('modalBody');
+            const fileName = (card.imageUrl || '').split('/').pop() || '';
+            const localModalSrc = fileName ? `/assets/images/${fileName}` : window.FALLBACK_LARGE;
+            const modalImgSrc = localModalSrc;
             
             title.textContent = card.title;
             
             body.innerHTML = `
-                <img src="${card.imageUrl || 'https://via.placeholder.com/600x600/334155/93c5fd?text=No+Image'}" 
+                <img src="${modalImgSrc}" 
                      alt="${card.title}" 
                      class="modal-image"
-                     onerror="this.src='https://via.placeholder.com/600x600/334155/93c5fd?text=No+Image'">
+                     onerror="this.src=window.FALLBACK_LARGE">
                 
                 ${card.prompt1 ? `
                     <div class="prompt-section">
                         <h4 class="prompt-title">提示词 1 (英文)</h4>
                         <div class="prompt-text">${card.prompt1}</div>
-                        <button class="copy-button" onclick="copyToClipboard('${card.prompt1.replace(/'/g, "\\'")}')">复制提示词</button>
+                        <button class="copy-button" data-text="${encodeURIComponent(card.prompt1)}" onclick="copyPromptFromData(this)">复制提示词</button>
                     </div>
                 ` : ''}
                 
@@ -728,7 +753,7 @@
                     <div class="prompt-section">
                         <h4 class="prompt-title">提示词 2 (中文)</h4>
                         <div class="prompt-text">${card.prompt2}</div>
-                        <button class="copy-button" onclick="copyToClipboard('${card.prompt2.replace(/'/g, "\\'")}')">复制提示词</button>
+                        <button class="copy-button" data-text="${encodeURIComponent(card.prompt2)}" onclick="copyPromptFromData(this)">复制提示词</button>
                     </div>
                 ` : ''}
                 
@@ -746,20 +771,49 @@
         }
 
         // Copy text to clipboard
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                const button = event.target;
+        function copyPromptFromData(button) {
+            const text = decodeURIComponent(button.dataset.text || '');
+            copyToClipboard(text, button);
+        }
+
+        function copyToClipboard(text, button) {
+            const doSuccessUX = () => {
                 const originalText = button.textContent;
                 button.textContent = '已复制!';
                 button.classList.add('copied');
-                
                 setTimeout(() => {
                     button.textContent = originalText;
                     button.classList.remove('copied');
                 }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
-            });
+            };
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text)
+                    .then(doSuccessUX)
+                    .catch(() => {
+                        const ta = document.createElement('textarea');
+                        ta.value = text;
+                        ta.setAttribute('readonly', '');
+                        ta.style.position = 'fixed';
+                        ta.style.opacity = '0';
+                        document.body.appendChild(ta);
+                        ta.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(ta);
+                        doSuccessUX();
+                    });
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.setAttribute('readonly', '');
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                doSuccessUX();
+            }
         }
 
         // Update card count display
