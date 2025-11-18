@@ -38,3 +38,10 @@ next-env.d.ts
 opennana-*-data-*.json
 opennana-*-prompts-*.json
 opennana-gallery-data-merged.json
+
+# Allow site image assets
+!assets/images/*.png
+!assets/images/*.jpg
+!assets/images/*.jpeg
+!assets/fallback-300.png
+!assets/fallback-600.png
