@@ -548,8 +548,8 @@
         let selectedCategory = null;
         let searchTerm = '';
 
-        const FALLBACK_SMALL = '/assets/fallback-300.png';
-        const FALLBACK_LARGE = '/assets/fallback-600.png';
+        const FALLBACK_SMALL = 'assets/fallback-300.png';
+        const FALLBACK_LARGE = 'assets/fallback-600.png';
         window.FALLBACK_SMALL = FALLBACK_SMALL;
         window.FALLBACK_LARGE = FALLBACK_LARGE;
 
@@ -557,7 +557,7 @@
         async function loadData() {
             try {
                 // Load the extracted data
-                const response = await fetch('/nano_prompts_20251118_183432.json', { cache: 'no-store' });
+                const response = await fetch('nano_prompts_20251118_183432.json', { cache: 'no-store' });
                 const data = await response.json();
 
                 const raw = Array.isArray(data) ? data : (data.prompts || []);
@@ -703,7 +703,7 @@
             const row = Math.floor(index / 5) + 1;
             const col = (index % 5) + 1;
             const fileName = (card.imageUrl || '').split('/').pop() || '';
-            const localSrc = fileName ? `/assets/images/${fileName}` : window.FALLBACK_SMALL;
+            const localSrc = fileName ? `assets/images/${fileName}` : window.FALLBACK_SMALL;
             const imgSrc = localSrc;
             
             cardDiv.innerHTML = `
@@ -730,7 +730,7 @@
             const title = document.getElementById('modalTitle');
             const body = document.getElementById('modalBody');
             const fileName = (card.imageUrl || '').split('/').pop() || '';
-            const localModalSrc = fileName ? `/assets/images/${fileName}` : window.FALLBACK_LARGE;
+            const localModalSrc = fileName ? `assets/images/${fileName}` : window.FALLBACK_LARGE;
             const modalImgSrc = localModalSrc;
             
             title.textContent = card.title;
