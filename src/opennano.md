@@ -35,14 +35,3 @@ categories_pool = [
   "food","paper-craft"
 ]
 ```
-
-生成条目 433
-```
-{
-  "title": "案例 433：水族馆偶像光影写真集",
-  "image": "/assets/images/433.jpeg",
-  "category": "fashion,portrait,photography,interior",
-  "prompt1": "{\"author\":\"@IamEmily2050\",\"content\":\"style_mode: raw_photoreal_high_fidelity; look: K-Pop idol aesthetic, flawless complexion, high-resolution digital photography, trendy; camera: vantage eye-level three-quarter view; framing: medium shot waist-up; lens_behavior: 85mm prime f/1.8 razor-sharp on eyes creamy bokeh; sensor_quality: full-frame zero noise; scene: environment setting indoor aquarium with large glass tanks; lighting: soft diffused blue-tinted light from tanks subtle fill clear eye catchlights; subject: young East Asian female K-Pop idol styling oval face high cheekbones subtle serene expression; hair: long wavy dark brown glossy strands frame face tucked behind left ear; expression: playful adorable confident; action: slight head tilt intense direct gaze large captivating almond-shaped eyes cute playful smile with dimples; makeup: K-beauty; complexion: glass skin dewy micro-pore detail; cheeks: subtle rosy blush; lips: matte pink; eyes: large almond-shaped dark brown dramatic winged liner voluminous long lashes sparkling reflective highlights; attire: top yellow one-shoulder long-sleeve crop top draped cotton; bottom high-waisted black slim pants silver button and zipper; accessories: small silver stud left ear; background: aquarium glass with colorful tropical fish corals blue water glow soft bokeh; aesthetic_controls: render_intent magazine editorial 8K clarity; material_fidelity: skin pores and gloss hair strand separation cotton fabric weave aquarium water ripples; color_grade: overall neutral warm skin vibrant aquarium colors; contrast: medium; negative_prompt: forbidden_elements blemishes harsh shadows matte skin dry lips extra fingers text watermark blur distortion dull eyes; forbidden_style anime painting low-res plastic skin over-airbrushed\"}",
-  "imageUrl": "/assets/images/433.jpeg"
-}
-```
