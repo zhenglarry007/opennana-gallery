@@ -1,4 +1,11 @@
-[  
+[ 
+  {
+    "title": "案例 439：时尚角色设定分解图谱",
+    "image": "/assets/images/439.jpeg",
+    "category": "fashion,character,portrait,minimalist",
+    "prompt1": "{\"author_name\":\"@cheerselflin\",\"prompt_text\":\"A fashion-style concept breakdown sheet in hand-drawn illustration style. Center: full-body view of a stylish, confident female character with a slightly sexy vibe (not explicit), in a dynamic yet natural pose. Surrounding: structured layout of her key components: Clothing layering – show outerwear, innerwear, tights (lace, sheer textures), shapewear with detailed pattern zoom-ins. Expression sheet – 3-4 facial expressions (neutral, shy, surprised, focused). Close-up zooms – textures of fabric folds, skin details, hand gestures. Lifestyle & accessories – open handbag with daily items: lipstick, perfume, mirror compact, hand cream, diary, supplements. Material annotations – handwritten-style notes beside each item (e.g., \\\"soft lace\\\", \\\"matte leather\\\", \\\"shade #520\\\"). Background: soft beige or parchment paper texture to evoke a design sketchbook. Lighting: clean, soft shadows to unify the scene. Output: high-quality 2D illustration in 4K, balanced between sensuality and fashion editorial. Language: labels in Chinese + English.\"}",
+    "imageUrl": "/assets/images/439.jpeg"
+  },
   {
     "title": "案例 438：全景角色深度拆解图谱",
     "image": "/assets/images/438.jpeg",
