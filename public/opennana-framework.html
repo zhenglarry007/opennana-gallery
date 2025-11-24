@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenNana提示词图库 - 框架分析</title>
+    <style>
+        /* CSS Variables for Theme Colors */
+        :root {
+            --foreground-rgb: 255, 255, 255;
+            --background-start-rgb: 15, 23, 42;
+            --background-end-rgb: 30, 41, 59;
+            --slate-800: #1e293b;
+            --slate-700: #334155;
+            --slate-600: #475569;
+            --blue-600: #2563eb;
+            --blue-500: #3b82f6;
+            --blue-300: #93c5fd;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: rgb(var(--foreground-rgb));
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgb(var(--background-end-rgb))
+            ) rgb(var(--background-start-rgb));
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 2rem;
+            padding-top: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .header p {
+            color: var(--gray-300);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        /* Search Section */
+        .search-section {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            flex: 1;
+            max-width: 28rem;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-400);
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            background-color: var(--slate-800);
+            border: 1px solid var(--slate-600);
+            border-radius: 9999px;
+            color: white;
+            font-size: 0.875rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 2px var(--blue-500);
+        }
+
+        .search-input::placeholder {
+            color: var(--gray-400);
+        }
+
+        .clear-button {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--slate-600);
+            color: var(--gray-300);
+            background-color: transparent;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .clear-button:hover {
+            background-color: var(--slate-700);
+        }
+
+        .card-count {
+            color: var(--gray-400);
+            font-size: 0.875rem;
+            white-space: nowrap;
+        }
+
+        .card-count-qr-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-qr-code {
+            width: 226px;
+            height: 226px;
+            margin-left: 50px;
+            background-color: white;
+            border-radius: 0.25rem;
+            padding: 0.125rem;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .header-qr-code:hover {
+            transform: scale(1.1);
+        }
+
+        .header-qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Category Chips */
+        .category-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .category-chip {
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            background-color: var(--slate-700);
+            color: var(--gray-300);
+        }
+
+        .category-chip:hover {
+            background-color: var(--slate-600);
+        }
+
+        .category-chip.active {
+            background-color: var(--blue-600);
+            color: white;
+        }
+
+        /* Grid Layout */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 640px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .cards-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .cards-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .cards-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: var(--slate-800);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid var(--slate-600);
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            background-color: var(--slate-700);
+        }
+
+        .card-image-container {
+            aspect-ratio: 1;
+            background-color: var(--slate-700);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-debug-info {
+            position: absolute;
+            top: 0.25rem;
+            right: 0.25rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.125rem 0.25rem;
+            border-radius: 0.25rem;
+        }
+
+        .card-position-info {
+            position: absolute;
+            top: 0.25rem;
+            left: 0.25rem;
+            background-color: rgba(59, 130, 246, 0.75);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.125rem 0.25rem;
+            border-radius: 0.25rem;
+        }
+
+        .card-content {
+            padding: 1rem;
+        }
+
+        .card-title {
+            color: white;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+            line-height: 1.25;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+
+        .card-tag {
+            padding: 0.25rem 0.5rem;
+            background-color: var(--slate-700);
+            color: var(--blue-300);
+            font-size: 0.75rem;
+            border-radius: 9999px;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background-color: var(--slate-800);
+            border-radius: 0.5rem;
+            max-width: 42rem;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid var(--slate-600);
+        }
+
+        .modal-title {
+            color: white;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--gray-400);
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 0.25rem;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: white;
+        }
+
+        .modal-body {
+            padding: 1rem;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .prompt-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .prompt-title {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .prompt-text {
+            background-color: var(--slate-700);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            color: white;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .copy-button {
+            background-color: var(--blue-600);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .copy-button:hover {
+            background-color: var(--blue-500);
+        }
+
+        .copy-button.copied {
+            background-color: #059669;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .empty-state p {
+            color: var(--gray-400);
+        }
+
+        /* Responsive Utilities */
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 767px) {
+            .header h1 {
+                font-size: 1.875rem;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-input-wrapper {
+                max-width: none;
+            }
+            
+            .card-count {
+                text-align: center;
+            }
+            
+            .card-count-qr-container {
+                justify-content: center;
+            }
+            
+            .header-qr-code {
+                width: 28px;
+                height: 28px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray-400);
+        }
+
+        .error {
+            text-align: center;
+            padding: 2rem;
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <h1>Nano Banana提示词图库</h1>
+            <p>浏览、筛选模型提示词案例库，<br>快速复制提示词，探索灵感。</p>
+        </div>
+    </header>
+
+    <!-- Search and Filter Section -->
+    <div class="container">
+        <div class="search-section">
+            <div class="search-bar">
+                <div class="search-input-wrapper">
+                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input type="text" class="search-input" placeholder="搜索关键词输入、标题或提示词..." id="searchInput">
+                </div>
+                <button class="clear-button" id="clearButton">清除筛选</button>
+                <div class="card-count-qr-container">
+                    <span class="card-count" id="cardCount">共 0/0 个案例</span>
+                    <div class="header-qr-code">
+                        <img src="https://xiaozhi-images.oss-cn-beijing.aliyuncs.com/user/2025/11/15/53d494f2-c129-4f91-b12f-94ec560c903b.jpg" 
+                             alt="QR Code" 
+                             title="扫码查看完整图库">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-chips" id="categoryChips">
+                <!-- Categories will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="cards-grid" id="cardsGrid">
+            <div class="loading">正在加载数据...</div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state hidden" id="emptyState">
+            <p>没有找到匹配的案例</p>
+        </div>
+    </div>
+
+    <!-- Modal for Card Details -->
+    <div class="modal-overlay hidden" id="modalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">案例详情</h2>
+                <button class="modal-close" id="modalClose">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data structure based on extracted JSON
+        let allCards = [];
+        let filteredCards = [];
+        let categories = [];
+        let selectedCategory = null;
+        let searchTerm = '';
+
+        const FALLBACK_SMALL = 'assets/fallback-300.png';
+        const FALLBACK_LARGE = 'assets/fallback-600.png';
+        window.FALLBACK_SMALL = FALLBACK_SMALL;
+        window.FALLBACK_LARGE = FALLBACK_LARGE;
+
+        // Load data from JSON file
+        async function loadData() {
+            try {
+                // Load the extracted data
+                const response = await fetch('nano_prompts_20251118_183432.json', { cache: 'no-store' });
+                const data = await response.json();
+
+                const raw = Array.isArray(data) ? data : (data.prompts || []);
+
+                allCards = raw
+                    .map(item => {
+                        const tags = Array.isArray(item.tags)
+                            ? item.tags
+                            : (item.category ? item.category.split(',').map(s => s.trim()).filter(Boolean) : []);
+                        return {
+                            title: item.title || '',
+                            imageUrl: item.imageUrl || item.image || '',
+                            tags,
+                            prompt1: item.prompt1 || '',
+                            prompt2: item.prompt2 || ''
+                        };
+                    })
+                    .filter(card => card.imageUrl && card.imageUrl.trim() !== '' && card.title && card.title.trim() !== '');
+
+                const categorySet = new Set();
+                allCards.forEach(card => {
+                    if (card.tags) {
+                        card.tags.forEach(tag => categorySet.add(tag));
+                    }
+                });
+                categories = Array.from(categorySet).sort();
+
+                filteredCards = [...allCards];
+                renderCategories();
+                renderCards();
+                updateCardCount();
+                const stats = document.getElementById('resultStats');
+                if (stats) {
+                    stats.textContent = `已加载 ${allCards.length} 条数据`;
+                }
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('cardsGrid').innerHTML = '<div class="error">加载数据失败</div>';
+            }
+        }
+
+        // Render category chips
+        function renderCategories() {
+            const container = document.getElementById('categoryChips');
+            container.innerHTML = '';
+            
+            // Show first 10 categories
+            categories.slice(0, 10).forEach(category => {
+                const chip = document.createElement('button');
+                chip.className = 'category-chip';
+                chip.textContent = category;
+                chip.onclick = () => toggleCategory(category);
+                container.appendChild(chip);
+            });
+            
+            // Add "展开" button if there are more categories
+            if (categories.length > 10) {
+                const expandButton = document.createElement('button');
+                expandButton.className = 'category-chip';
+                expandButton.textContent = '展开';
+                expandButton.onclick = () => showAllCategories();
+                container.appendChild(expandButton);
+            }
+        }
+
+        // Toggle category selection
+        function toggleCategory(category) {
+            selectedCategory = selectedCategory === category ? null : category;
+            updateCategoryUI();
+            filterCards();
+        }
+
+        // Update category chip UI
+        function updateCategoryUI() {
+            const chips = document.querySelectorAll('.category-chip');
+            chips.forEach(chip => {
+                if (chip.textContent !== '展开') {
+                    chip.classList.toggle('active', chip.textContent === selectedCategory);
+                }
+            });
+        }
+
+        // Show all categories (expand)
+        function showAllCategories() {
+            const container = document.getElementById('categoryChips');
+            container.innerHTML = '';
+            
+            categories.forEach(category => {
+                const chip = document.createElement('button');
+                chip.className = 'category-chip';
+                chip.textContent = category;
+                chip.onclick = () => toggleCategory(category);
+                container.appendChild(chip);
+            });
+            
+            updateCategoryUI();
+        }
+
+        // Filter cards based on search and category
+        function filterCards() {
+            filteredCards = allCards.filter(card => {
+                const matchesSearch = !searchTerm || 
+                    card.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    (card.tags && card.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))) ||
+                    (card.prompt1 && card.prompt1.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                    (card.prompt2 && card.prompt2.toLowerCase().includes(searchTerm.toLowerCase()));
+                
+                const matchesCategory = !selectedCategory || (card.tags && card.tags.includes(selectedCategory));
+                
+                return matchesSearch && matchesCategory;
+            });
+            
+            renderCards();
+            updateCardCount();
+        }
+
+        // Render cards grid
+        function renderCards() {
+            const container = document.getElementById('cardsGrid');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (filteredCards.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            
+            emptyState.classList.add('hidden');
+            container.innerHTML = '';
+            
+            filteredCards.forEach((card, index) => {
+                const cardElement = createCardElement(card, index);
+                container.appendChild(cardElement);
+            });
+        }
+
+        // Create individual card element
+        function createCardElement(card, index) {
+            const cardDiv = document.createElement('div');
+            cardDiv.className = 'card fade-in';
+            cardDiv.onclick = () => showCardDetails(card);
+            
+            const row = Math.floor(index / 5) + 1;
+            const col = (index % 5) + 1;
+            const fileName = (card.imageUrl || '').split('/').pop() || '';
+            const localSrc = fileName ? `assets/images/${fileName}` : window.FALLBACK_SMALL;
+            const imgSrc = localSrc;
+            
+            cardDiv.innerHTML = `
+                <div class="card-image-container">
+                    <img src="${imgSrc}" 
+                         alt="${card.title}" 
+                         class="card-image"
+                         onerror="this.src=window.FALLBACK_SMALL">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">${card.title}</h3>
+                    <div class="card-tags">
+                        ${card.tags ? card.tags.map(tag => `<span class="card-tag">${tag}</span>`).join('') : ''}
+                    </div>
+                </div>
+            `;
+            
+            return cardDiv;
+        }
+
+        // Show card details in modal
+        function showCardDetails(card) {
+            const modal = document.getElementById('modalOverlay');
+            const title = document.getElementById('modalTitle');
+            const body = document.getElementById('modalBody');
+            const fileName = (card.imageUrl || '').split('/').pop() || '';
+            const localModalSrc = fileName ? `assets/images/${fileName}` : window.FALLBACK_LARGE;
+            const modalImgSrc = localModalSrc;
+            
+            title.textContent = card.title;
+            
+            body.innerHTML = `
+                <img src="${modalImgSrc}" 
+                     alt="${card.title}" 
+                     class="modal-image"
+                     onerror="this.src=window.FALLBACK_LARGE">
+                
+                ${card.prompt1 ? `
+                    <div class="prompt-section">
+                        <h4 class="prompt-title">提示词 1 (英文)</h4>
+                        <div class="prompt-text">${card.prompt1}</div>
+                        <button class="copy-button" data-text="${encodeURIComponent(card.prompt1)}" onclick="copyPromptFromData(this)">复制提示词</button>
+                    </div>
+                ` : ''}
+                
+                ${card.prompt2 ? `
+                    <div class="prompt-section">
+                        <h4 class="prompt-title">提示词 2 (中文)</h4>
+                        <div class="prompt-text">${card.prompt2}</div>
+                        <button class="copy-button" data-text="${encodeURIComponent(card.prompt2)}" onclick="copyPromptFromData(this)">复制提示词</button>
+                    </div>
+                ` : ''}
+                
+                ${card.tags && card.tags.length > 0 ? `
+                    <div class="prompt-section">
+                        <h4 class="prompt-title">标签</h4>
+                        <div class="category-chips">
+                            ${card.tags.map(tag => `<span class="category-chip">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+            `;
+            
+            modal.classList.remove('hidden');
+        }
+
+        // Copy text to clipboard
+        function copyPromptFromData(button) {
+            const text = decodeURIComponent(button.dataset.text || '');
+            copyToClipboard(text, button);
+        }
+
+        function copyToClipboard(text, button) {
+            const doSuccessUX = () => {
+                const originalText = button.textContent;
+                button.textContent = '已复制!';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            };
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text)
+                    .then(doSuccessUX)
+                    .catch(() => {
+                        const ta = document.createElement('textarea');
+                        ta.value = text;
+                        ta.setAttribute('readonly', '');
+                        ta.style.position = 'fixed';
+                        ta.style.opacity = '0';
+                        document.body.appendChild(ta);
+                        ta.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(ta);
+                        doSuccessUX();
+                    });
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.setAttribute('readonly', '');
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                doSuccessUX();
+            }
+        }
+
+        // Update card count display
+        function updateCardCount() {
+            document.getElementById('cardCount').textContent = `共 ${filteredCards.length}/${allCards.length} 个案例`;
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search input
+            document.getElementById('searchInput').addEventListener('input', function(e) {
+                searchTerm = e.target.value;
+                filterCards();
+            });
+            
+            // Clear button
+            document.getElementById('clearButton').addEventListener('click', function() {
+                searchTerm = '';
+                selectedCategory = null;
+                document.getElementById('searchInput').value = '';
+                updateCategoryUI();
+                filterCards();
+            });
+            
+            // Modal close
+            document.getElementById('modalClose').addEventListener('click', function() {
+                document.getElementById('modalOverlay').classList.add('hidden');
+            });
+            
+            // Close modal on overlay click
+            document.getElementById('modalOverlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.add('hidden');
+                }
+            });
+            
+            // Load data
+            loadData();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.getElementById('modalOverlay').classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
