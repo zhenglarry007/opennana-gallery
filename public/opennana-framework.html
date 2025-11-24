@@ -557,7 +557,7 @@
         async function loadData() {
             try {
                 // Load the extracted data
-                const response = await fetch('nano_prompts_20251118_183432.json', { cache: 'no-store' });
+                const response = await fetch('/opennana-gallery/nano_prompts_20251118_183432.json', { cache: 'no-store' });
                 const data = await response.json();
 
                 const raw = Array.isArray(data) ? data : (data.prompts || []);
