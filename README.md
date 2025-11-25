@@ -1,6 +1,6 @@
 # OpenNana Gallery - Next.js + Tailwind CSS
 
-一个基于 Next.js 和 Tailwind CSS 开发的提示词图库网站，视觉风格与 https://opennana.com/awesome-prompt-gallery/ 保持一致。
+一个基于 Next.js 和 Tailwind CSS 开发的提示词图库网站。
 
 ## 🎨 功能特点
 
