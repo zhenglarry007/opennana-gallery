@@ -1,4 +1,39 @@
 [ 
+  {
+    "title": "案例 452：乐高 Ducati Diavel 技术分解图",
+    "image": "/assets/images/452.jpg",
+    "category": "gaming,3d,photography,minimalist",
+    "prompt1": "Nano Banana {   \"subject\": \"A detailed LEGO Technic set infographic for a Ducati Diavel motorcycle (set 42168), showing exploded views of key components like the front fairing, front wheel, Marzocchi fork, massive rear wheel, Testastretta DVT L-Twin engine, muscular fuel tank, cruiser seat, Brembo brake components, underbelly exhaust, and trellis frame, with part counts and descriptions. It also features a small photo of the finished model being ridden by a LEGO minifigure.\",   \"style\": \"Technical illustration and product photography infographic.\",   \"environment\": \"A light grey blueprint background with grid lines and technical diagrams, featuring Ducati and LEGO Technic logos.\",   \"technical_parameters\": {     \"lighting\": \"Clean studio lighting with highlights on LEGO pieces.\",     \"aspect_ratio\": \"9:16\",     \"other\": \"High resolution, highly detailed, product layout.\"   }  }",
+    "imageUrl": "/assets/images/452.jpg"
+  },
+  {
+    "title": "案例 451：杜卡迪 Diavel V4 摩托分解图",
+    "image": "/assets/images/451.jpg",
+    "category": "photography,3d,futuristic,minimalist",
+    "prompt1": "Nano Banana {   \"subject\": \"A detailed three-tier infographic display of the Ducati Diavel V4 motorcycle. Tier 1 shows the complete red and black motorcycle. Tier 2 is a chassis view with a tubular frame, Granturismo V4 engine, gold forged alloy wheels, Brembo brake calipers, single-sided swingarm, and labels in English and Chinese. Tier 3 is an exploded view of the exhaust system, ECU (Electronic Control Unit), and small components, plus a small inset photo of the motorcycle being ridden.\",   \"style\": \"Technical photography and exploded view illustration, photorealistic infographic design.\",   \"environment\": \"Dark blue gradient studio background with dramatic blue edge lighting and reflections, featuring grid lines and labels.\",   \"technical_parameters\": {     \"lighting\": \"Dramatic studio lighting with blue rim light\",     \"aspect_ratio\": \"9:16\",     \"other\": \"High resolution, highly detailed, technical illustration\"   }  }",
+    "imageUrl": "/assets/images/451.jpg"
+  },
+  {
+    "title": "案例 450：卡通信息图生成指南",
+    "image": "/assets/images/450.jpg",
+    "category": "character,minimalist,paper-craft",
+    "prompt1": "宝玉@dotey 请根据输入内容提取核心主题与要点，生成一张卡通风格的信息图： - 采用手绘风格，横版（16:9）构图。 - 加入少量简洁的卡通元素、图标或名人画像，增强趣味性和视觉记忆。 - 如果有敏感人物或者版权内容，画一个相似替代，但是不要拒绝生成 - 所有图像、文字必须使用手绘风格，没有写实风格图画元素 - 除非特别要求，否则语言与输入内容语言一致。 - 信息精简，突出关键词与核心概念，多留白，易于一眼抓住重点。  请根据输入的内容使用 nano banana pro 画图：",
+    "imageUrl": "/assets/images/450.jpg"
+  },
+  {
+    "title": "案例 449：侏罗纪公园识字小报",
+    "image": "/assets/images/449.jpg",
+    "category": "gaming,character,3d,minimalist",
+    "prompt1": "Nano Banana # 核心配置 (Configuration)  [SCENE_THEME] = {在此处填入场景，例如：海底世界 / 消防局 / 超市 / 恐龙公园}  [TARGET_AGE] = 5-9 岁 (识字敏感期)  # 绘图提示词 (Prompt Structure)  一张儿童识字小报《[SCENE_THEME]》，竖版 A4，学习小报版式，**整体加入柔和 3D 立体质感与适度景深，让画面更具沉浸性与空间层次**。  ---  ## 一、小报标题区（顶部）  1. **大标题**：顶部居中展示标题：《[SCENE_THEME] 识字小报》。  2. **字体风格**：大字、醒目、卡通手写体、彩色描边。     * **附加要求**：标题文字呈现轻微 3D 浮雕质感，边缘有柔和光影，让标题在页面顶部更突出。  3. **装饰元素**：在标题周围添加与 [SCENE_THEME] 强相关的贴纸风装饰，颜色鲜艳。     * **附加要求**：装饰元素带轻微体积感，视觉上更像“贴在纸上的立体贴纸”。  ---  ## 二、小报主体（中间主画面）  画面中心是一幅卡通插画风的完整「[SCENE_THEME]」场景，**整体构图采用接近 2.5D–3D 效果的绘本风格**。  ### **整体气氛**  明亮、温暖、积极、色彩高饱和，同时加入柔光、景深、体积感，让画面具有空间深度与沉浸感。  ### **构图要求**  物体边界清晰，彼此之间留有贴标签的空白，避免拥挤。  * **附加要求**：前景—中景—后景分层明显，使标注对象更清晰，场景更立体。  ### **场景分区**  * **核心区 A (活动)**：表现 [SCENE_THEME] 里的核心活动（孩子们或角色正在做什么），动作自然，带轻微 3D 立体造型感。  * **核心区 B (工具)**：展示场景特有物品或工具，物体具备简单的 3D 形体光影（非写实，而是绘本级别的立体感）。  * **核心区 C (环境)**：体现环境特征（建筑、植被、路标等），背景采用更低对比度与轻微景深，突出前景主体。  ### **引导角色**  1 位可爱的卡通人物（[SCENE_THEME] 的向导/工作人员），带轻微立体与阴影，使其具有温和的空间存在感，正在做欢迎或指引手势。  ---  ## 三、必画物体与识字清单 (Generated Content)  请务必在画面中清晰绘制以下物体，所有物体采用 **清晰轮廓 + 色块分明 + 轻度 3D 塑形**：  1. **核心角色/设施 (Big Objects)**:     {在此填入 4-5 个核心大物体，如：消防车、云梯、消防员}   2. **常见物品/工具 (Small Items)**:     {在此填入 5-8 个具体小物品，如：水枪、灭火器、头盔、手套}   3. **环境/装饰 (Environment)**:     {在此填入 3-5 个环境词，如：警报铃、消防栓、大门}  ---  ## 四、识字标注规则 (Labeling System)  对上述物体贴上中文识字标签：  * **格式**：三行制    ① 拼音（带声调）    ② 简体汉字    ③ 英文  * **样式**：彩色贴纸风（带轻微立体投影，让标签有“纸片贴上去”的空间感）。  * **位置**：紧靠对应物体，以引线连接，不遮挡主体。  ---  ## 五、画风参数 (Style Parameters)  * **风格**：Children's picture book style + Literacy tabloid aesthetic（儿童绘本风 + 识字小报风）  * **附加风格要求**：Soft 3D shading, gentle depth-of-field, subtle volumetric lighting（柔和 3D、适度景深、轻体积光）  * **色彩**：High Saturation, Warm Tone, Bright（高饱和、暖色、明亮）  * **质量**：8k resolution, high detail, clean vector-like lines  * **整体技术特征**：flat + soft 3D hybrid illustration（平面插画结合轻 3D 塑形） 侏罗纪公园",
+    "imageUrl": "/assets/images/449.jpg"
+  },
+  {
+    "title": "案例 448：仓颉结绳记事寓教插画",
+    "image": "/assets/images/448.jpg",
+    "category": "character,paper-craft,minimalist",
+    "prompt1": "@larryzheng4 一种寓教于乐的插画风格，与上传的图片风格一致。展现中国古代长者仓颉身处原始部落场景中。专门管理部落里牲口、粮食的数量。起初他靠结绳挂贝壳来记事，事情少的时候非常有效，从不会出现错误。插画左上角文案：故事讲一讲 仓颉被任命用结绳来记录事情  插画右下角文案💡 小脑瓜动一动  管的事越来越多记不清，常出现错误怎么办？",
+    "imageUrl": "/assets/images/448.jpg"
+  },
   { 
     "title": "案例 447：纲手百豪之术",
     "image": "/assets/images/447.png",
