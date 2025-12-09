@@ -1,5 +1,54 @@
 [ 
   {
+    "title": "案例 459：窄束光下神秘人像",
+    "image": "/assets/images/459.jpg",
+    "category": "portrait,character,photography,minimalist",
+    "prompt1": "{\"author\":\"Nano Banana\",\"prompt_text\":\"Generate a hyperrealistic realistic-anime portrait of a female character standing in a completely black background. Lighting: use a narrow beam spotlight focused only on the center of the face. The edges of the light must be sharp and dramatic. All areas outside the spotlight should fall quickly into deep darkness (high falloff shadow), almost blending into the black background. Not soft lighting. Hair: long dark hair with some strands falling over the face. The lower parts of the hair should fade into the shadows. Pose: one hand raised gently to the lips in a shy, hesitant gesture. Eyes looking directly at the camera with a mysterious mood. Clothing: black long-sleeve knit sweater; the sweater and body should mostly disappear into the darkness with minimal detail. Overall tone: dark, moody, dramatic, mysterious. High-contrast only in the lit portion of the face. Everything outside the spotlight should be nearly invisible.\"}",
+    "imageUrl": "/assets/images/459.jpg"
+  },
+  {
+    "title": "案例 458：中国省份美食拼图集",
+    "image": "/assets/images/458.jpg",
+    "category": "food,landscape,paper-craft,3d,minimalist",
+    "prompt1": "{\"author\":\"@larryzheng4\",\"number\":458,\"prompt_text\":\"赶紧试试自己省的美食地图吧。4:3比例，制作一张中国地图，每个省都用该省最著名的食物来构成（各省看起来应该像是由食物组成的，而不是食物的图片）。仔细检查，确保每个省都正确无误。\"}",
+    "imageUrl": "/assets/images/458.jpg"
+  },
+  {
+    "title": "案例 457：清新青春手账拼贴肖像",
+    "image": "/assets/images/457.jpg",
+    "category": "fashion,portrait,photography,minimalist",
+    "prompt1": "{\"author\":\"Nano Banana\",\"number\":457,\"prompt_text\":\"Recreate the character's appearance from the uploaded photo, accurately preserving hairstyle, facial details, and expression. Present it as a bright, fresh, and youthful fashion portrait in a vertical collage format. She wears trendy youthful clothing, holding a red lollipop near her lips. Her face is playfully decorated with cute colorful stickers shaped like hearts, strawberries, and stars, creating a lively, stylish atmosphere. Her eyes are expressive, makeup is soft and natural, and her face shows a dreamy expression. The background features a corkboard covered with colorful sticky notes and memo papers, creating a campus and journaling vibe. Hand-drawn doodles of stars, arrows, and similar elements add to the cute, magazine-style aesthetic. Surrounding the main subject are 4 scrapbook-style photo frames in various shapes, showcasing different outfits and poses of the same person. Overall, the image should utilize soft studio lighting, high-definition details, a clean-cut scrapbook aesthetic, Korean fashion-magazine style, and vibrant colors. Aspect ratio: 9:16.\"}",
+    "imageUrl": "/assets/images/457.jpg"
+  },
+  {
+    "title": "案例 456：超写实人像贴纸合集",
+    "image": "/assets/images/456.jpg",
+    "category": "portrait,photography,character,minimalist",
+    "prompt1": "{\"author_name\":\"Nano Banana\",\"prompt_text\":\"Prompt: Create a sticker set maintaining 100% of the woman's original facial features from the provided image. Do not alter the face, focusing on ultra-realistic details of the facial structure, eyes, eyebrows, nose, mouth, and expression. The final face must be realistic, not cartoon-like. She has long, voluminous hair. 1. Makeup: Maintain Original Face: We will preserve the structure of your face, eyes, eyebrows, nose, mouth, and expression as closely as possible to the original image to maintain naturalness and uniqueness, while adjusting the tone to be softer: Eyes: Slightly reduce the sharpness of the Cat Eye eyeliner to a thin line close to the lash line for a softer look, while still maintaining eye definition. Eyeshadow: Use natural tones like light brown, peach, or beige. Eyebrows: Original shape, but brushed up to look softer and more natural. Lips: Glossy, pink-tinted, nude-pink, or coral-toned lipstick/tint to make the lips look full and moisturized. Focus on a bright but not overly intense look. 2. Hairstyle: Natural Voluminous Long Hair: Her hair is long and flowing, but the styling will emphasize natural volume and movement. Soft, natural waves. 3. Outfit: Attire: A white open-back bodysuit paired with distressed, faded blue denim shorts. Shoes: Elegant, simple open-toe flat sandals. 4. Accessories: Styled freely and fittingly for each scene. 4. Poses & Sticker Elements: Poses: Various poses such as waving, jumping, walking playfully, reading a book, holding up a sign, cheering with both hands, stretching, or making a celebratory gesture, to create a cheerful and friendly atmosphere. Decoration: Include elements like small rainbows, sparkling stars, clear bubbles, hearts, balloons, or light-colored dots to decorate and enhance the fun of each sticker scene. 5. Style: Thin black border around the sticker. Use a modern, rounded 'Itim' style font for the text. Text: Add short emotional phrases written in a cute, beautiful Thai script near the sticker (no speech bubbles/text boxes): \\\"Hello\\\" \\\"LoveU\\\" \\\"Bye\\\" \\\"Cool\\\" \\\"Yes\\\" \\\"Thank You\\\" \\\"Sorry\\\" \\\"Ok\\\" \\\"No\\\" \\\"So cute\\\" \\\"SO GOOD\\\" \\\"Good Luck\\\" \\\"GOOD Night\\\" \\\"GOOD Bye\\\" \\\"555\\\" \\\"Oh\\\" \\\"HBD\\\" \\\"OMG\\\" \\\"Hapyy\\\" \\\"Hi\\\" 6. Guidelines: Do not include a text box. Ensure balanced composition with sufficient white space—not cluttered. Match the pose to the text. Emphasis: Reiterate 'maintain 100% of the original face features from the provided image,' 'ultra-realistic facial detail,' and 'professional studio lighting on face (realistic face, not cartoon face).'\"}",
+    "imageUrl": "/assets/images/456.jpg"
+  },
+  {
+    "title": "案例 455：韩系通透职业人像照",
+    "image": "/assets/images/455.jpeg",
+    "category": "portrait,photography,fashion,minimalist",
+    "prompt1": "{\"author\":\"@larryzheng4\",\"number\":455,\"prompt_text\":\"将附件图片人物转换为一张韩式风格的专业形象照，比例3:4。构图与人物：构图：半身照，采用简约的非中心构图，留有呼吸感的恰当空白。人物：面部特写，聚焦于清澈自然的眼神和面部表情。动作和姿态要求放松、协调且自然，流露出一种不经意的优雅。风格：都市休闲风格的简约着装，如纯色裙装、纯色衬衫或针织衫，干净利落。光影与氛围：光线：运用柔和的蝴蝶光或伦勃朗光，营造出清晰、立体的面部轮廓，同时让皮肤看起来通透、细腻。眼中需要有明亮自然的眼神光，作为画面的情感焦点。氛围：整体氛围追求安静、清澈、温柔。画面呈现出一种高级空气感和呼吸感。背景与质感：背景：纯色或带有低饱和度色彩的柔和渐变背景，营造出简约、干净且有层次感的空间氛围。质感：画面质感细腻，色彩柔和，可带有轻微的、几乎不可见的胶片颗粒感，增加一丝温暖和复古的韵味。避免任何干扰性的文字或标志，让焦点完全集中在人物的情绪和气质上。保持图片人物面部特征保持一致。\",\"aspect_ratio\":\"3:4\",\"lighting\":\"soft butterfly or Rembrandt light with natural catchlight\",\"mood\":\"quiet, clear, gentle\",\"background\":\"plain or low-saturation soft gradient\",\"texture\":\"subtle film grain, soft tones\"}",
+    "imageUrl": "/assets/images/455.jpg"
+  },
+  {
+    "title": "案例 454：微缩黏土立体叙事图",
+    "image": "/assets/images/454.jpg",
+    "category": "3d,character,landscape,photography",
+    "prompt1": "{\"author_name\":\"Visual Storyteller & Miniature Artist\",\"prompt_text\":\"promopt: # Role: Visual Storyteller & Miniature Artist # Project: \\\"[在此处填写作品名称]\\\" (e.g., 平凡的世界, 哈利波特, 三体, 红楼梦) # Goal: Create a prompt for a 4K, hyper-detailed, isometric 3D claymation diorama image that visualizes the essence of the specified literary work/movie. # Workflow (Do this internally): 1. Analyze the Work: Identify the core setting/landscape (e.g., Loess Plateau, Hogwarts, Cyberpunk City). 2. Extract Characters: Select 5-7 key characters. 3. Map Fates: For each character, assign a visual action/prop that symbolizes their destiny, personality, or iconic ending in the story. 4. Apply Style: Enforce the \\\"Exquisite Miniature Claymation\\\" aesthetic. # Output Format (Generate the final Image Prompt based on this structure): Image Prompt: (Style & Atmosphere): A hyper-realistic, wide-angle 4K isometric view of a miniature diorama representing the world of [Insert Title Here]. The style is \\\"Exquisite Claymation\\\" with tactile textures (fingerprints on clay, felt, resin water, wood grain). The lighting is cinematic and warm, utilizing a tilt-shift effect to emphasize the scale of a tiny, handcrafted world. (The Setting): The base landscape depicts [Insert Core Setting Description automatically based on the work]. It is rich in detail, serving as the stage for the characters. (Character Vignettes - The Fates): Scattered across this landscape are distinct, animated clay figures representing the main cast: 1. [Character A Name]: [Visual description of action symbolizing their fate/role]. 2. [Character B Name]: [Visual description of action symbolizing their fate/role]. 3. [Character C Name]: [Visual description of action symbolizing their fate/role]. 4. [Character D Name]: [Visual description of action symbolizing their fate/role]. 5. [Character E Name]: [Visual description of action symbolizing their fate/role]. (Title Element):\"}",
+    "imageUrl": "/assets/images/454.jpg"
+  },
+  {
+    "title": "案例 453：圣诞Y2K直闪人像",
+    "image": "/assets/images/453.jpg",
+    "category": "portrait,photography,fashion,interior",
+    "prompt1": "{\"author_name\":\"Nano Banana\",\"prompt\":{\"subject\":\"Young Asian woman\",\"face\":\"100% identical to the original, no changes\",\"outfit\":{\"inner_top\":\"Red spaghetti-strap top\",\"coat\":\"Thick, fluffy white faux-fur winter coat\"},\"makeup\":{\"style\":\"Chinese girl style\",\"blush\":\"Pink blush on cheeks and nose\",\"lips\":\"Glossy red-orange lipstick\",\"skin\":\"Fair smooth skin with pink tone\"},\"hair\":{\"color\":\"Natural black\",\"style\":\"Loose curls or mermaid waves\",\"details\":\"Hair slightly messy in front\"},\"nails\":{\"type\":\"Manicured\",\"design\":\"3D Christmas-themed decorations on every finger\"},\"scene\":{\"theme\":\"Christmas party atmosphere\",\"left\":\"Christmas tree with red ornaments and a small teddy bear\",\"right_back\":\"Giant Santa Claus plush doll\",\"effects\":\"Colorful confetti falling in foreground with motion blur\"},\"pose\":{\"hands\":\"Peace sign with both hands\",\"expression\":\"Pouty lips, happy expression\",\"head\":\"Slightly tilted and leaning back\"},\"accessories\":{\"necklace\":\"Beaded necklace with Christmas pendant\"},\"tone_style\":{\"photography\":\"Direct-flash photo\",\"aesthetic\":\"Vintage film / Y2K style\",\"texture\":\"Visible film grain and noise\",\"colors\":\"Vivid red, green, and white\"}}}",
+    "imageUrl": "/assets/images/453.jpg"
+  },
+  {
     "title": "案例 452：乐高 Ducati Diavel 技术分解图",
     "image": "/assets/images/452.jpg",
     "category": "gaming,3d,photography,minimalist",

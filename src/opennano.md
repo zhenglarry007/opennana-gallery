@@ -17,10 +17,10 @@
 ```
 {
   "title": "案例 {number}：{约10字标题}",
-  "image": "/assets/images/{number}.jpeg",
+  "image": "/assets/images/{number}.jpg",
   "category": "{cat1,cat2[,cat3...]}",
   "prompt1": "{JSON字符串}",
-  "imageUrl": "/assets/images/{number}.jpeg"
+  "imageUrl": "/assets/images/{number}.jpg"
 }
 ```
 

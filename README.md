@@ -38,7 +38,7 @@ npm install
 npm run dev
 ```
 
-4. 打开浏览器访问: http://localhost:3000
+4. 打开浏览器访问: https://zhenglarry007.github.io/opennana-gallery/opennana-framework.html
 
 ### 构建生产版本
 
