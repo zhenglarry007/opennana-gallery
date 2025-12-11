@@ -1,5 +1,19 @@
 [ 
   {
+    "title": "案例 461：旗舰级全品类品牌平铺",
+    "image": "/assets/images/461.jpg",
+    "category": "logo,minimalist,paper-craft,food",
+    "prompt1": "{\"author\":\"@joyforjoker43\",\"number\":461,\"prompt_text\":\"{ \\\"task_description\\\": \\\"Generate a flagship-level full-category brand identity mockup\\\", \\\"prompt_structure\\\": { \\\"subject\\\": \\\"A massive, ultra-detailed brand ecosystem flat lay\\\", \\\"brand_info\\\": { \\\"name\\\": \\\"Marvin Studio\\\", \\\"industry\\\": \\\"Artisan Bakery & Coffee\\\", \\\"visual_theme\\\": \\\"Nordic Forest, Minimalist, Warm\\\" }, \\\"item_categories\\\": { \\\"packaging\\\": [\\\"shopping bags (S/M/L)\\\", \\\"cake boxes\\\", \\\"coffee bean pouch\\\", \\\"sandwich wedge box\\\", \\\"pastry box\\\"], \\\"dining_essentials\\\": [\\\"coffee cups with sleeves\\\", \\\"paper napkins\\\", \\\"sugar packets\\\", \\\"tray liner paper\\\", \\\"menu board\\\"], \\\"staff_uniform\\\": [\\\"folded green apron\\\", \\\"embroidered baseball cap\\\", \\\"staff name tag\\\"], \\\"merchandise\\\": [\\\"canvas tote bag\\\", \\\"ceramic mug\\\", \\\"branded notebook\\\", \\\"ballpoint pen\\\"] }, \\\"visual_style\\\": { \\\"art_style\\\": \\\"Clean vector mockup with realistic texture mapping\\\", \\\"color_palette\\\": [\\\"Forest Green (Dominant)\\\", \\\"Matte White (Sub-dominant)\\\", \\\"Kraft Paper Brown (Texture)\\\", \\\"Beige (Accent)\\\"], \\\"logo_style\\\": \\\"Minimalist line-art deer\\\" }, \\\"composition\\\": { \\\"type\\\": \\\"Dense Knolling\\\", \\\"background\\\": \\\"Solid dark charcoal (#1A1A1A)\\\", \\\"perspective\\\": \\\"90-degree Top-down (Orthographic)\\\" } }, \\\"negative_prompt\\\": \\\"messy, cluttered, overlapping, 3D perspective distortion, photorealistic reflection, glossy plastic, neon colors, human hands, watermark, low resolution\\\", \\\"generation_params\\\": { \\\"aspect_ratio\\\": \\\"3:4\\\", \\\"detail_level\\\": \\\"High\\\", \\\"texture_quality\\\": \\\"Premium\\\" } }\"}",
+    "imageUrl": "/assets/images/461.jpg"
+  },
+  {
+    "title": "案例 460：高对比品牌物料平铺",
+    "image": "/assets/images/460.jpg",
+    "category": "photography,minimalist,logo,food",
+    "prompt1": "{\"author\":\"@joyforjoker43\",\"prompt_text\":\"Generate a high-contrast brand flat lay with distinct material textures; subject: A vibrant yellow brand identity collection arranged in dynamic knolling; brand_identity: {name: Marvin Studio, theme: Mango Fruit Tea, graphics: Pop-art doodles, bold black lines}; material_mapping: {paper_items: {objects: [shopping bag, cup carrier, straw wrapper], texture: Matte finish, slight paper grain, non-reflective}, glossy_items: {objects: [ceramic mug, plastic cup lid], texture: High gloss, sharp specular highlights, smooth surface}, fabric_items: {objects: [tote bag], texture: Coarse canvas weave, natural fabric folds}, organic_items: {objects: [fresh mangoes], texture: Waxy fruit skin, natural imperfections, organic shape}}; lighting_setup: {type: Hard Sunlight / Direct Flash, shadows: Sharp, defined, pitch black cast shadows, direction: Top-left to Bottom-right}; composition: {style: Scattered Knolling, perspective: Isometric / High-angle, background: Clean white studio backdrop}; negative_prompt: soft light, blurry textures, metallic paper, plastic fruit, distorted text, low resolution, messy, dark background, pastel colors; recommended_settings: {model: SDXL or Midjourney v6, sampler: DPM++ 2M SDE Karras, steps: 40, cfg_scale: 8.0, notes: Use high steps to resolve texture details like canvas weave and paper grain.}\"}",
+    "imageUrl": "/assets/images/460.jpg"
+  },
+  {
     "title": "案例 459：窄束光下神秘人像",
     "image": "/assets/images/459.jpg",
     "category": "portrait,character,photography,minimalist",
