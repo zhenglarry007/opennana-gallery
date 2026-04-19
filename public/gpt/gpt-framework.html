@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenNana提示词图库 - 框架分析</title>
+    <title>GPT Image 2 Prompts - Awesome Collection</title>
     <style>
-        /* CSS Variables for Theme Colors */
         :root {
             --foreground-rgb: 255, 255, 255;
             --background-start-rgb: 15, 23, 42;
@@ -20,7 +19,6 @@
             --gray-400: #9ca3af;
         }
 
-        /* Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -39,7 +37,6 @@
             line-height: 1.5;
         }
 
-        /* Container */
         .container {
             max-width: 1280px;
             margin: 0 auto;
@@ -52,7 +49,6 @@
             }
         }
 
-        /* Tab Navigation */
         .tab-nav {
             display: flex;
             gap: 0.5rem;
@@ -83,7 +79,6 @@
             border-color: var(--blue-600);
         }
 
-        /* Header */
         .header {
             margin-bottom: 2rem;
             padding-top: 2rem;
@@ -103,7 +98,6 @@
             line-height: 1.5;
         }
 
-        /* Search Section */
         .search-section {
             margin-bottom: 1.5rem;
             display: flex;
@@ -202,7 +196,6 @@
             object-fit: contain;
         }
 
-        /* Category Chips */
         .category-chips {
             display: flex;
             flex-wrap: wrap;
@@ -229,7 +222,6 @@
             color: white;
         }
 
-        /* Grid Layout */
         .cards-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -261,7 +253,6 @@
             }
         }
 
-        /* Card Styles */
         .card {
             background-color: var(--slate-800);
             border-radius: 0.5rem;
@@ -286,28 +277,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .card-debug-info {
-            position: absolute;
-            top: 0.25rem;
-            right: 0.25rem;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            font-size: 0.75rem;
-            padding: 0.125rem 0.25rem;
-            border-radius: 0.25rem;
-        }
-
-        .card-position-info {
-            position: absolute;
-            top: 0.25rem;
-            left: 0.25rem;
-            background-color: rgba(59, 130, 246, 0.75);
-            color: white;
-            font-size: 0.75rem;
-            padding: 0.125rem 0.25rem;
-            border-radius: 0.25rem;
         }
 
         .card-content {
@@ -336,7 +305,6 @@
             border-radius: 9999px;
         }
 
-        /* Modal Styles */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -442,7 +410,6 @@
             background-color: #059669;
         }
 
-        /* Empty State */
         .empty-state {
             text-align: center;
             padding: 3rem 0;
@@ -452,7 +419,6 @@
             color: var(--gray-400);
         }
 
-        /* Responsive Utilities */
         .hidden {
             display: none;
         }
@@ -485,7 +451,6 @@
             }
         }
 
-        /* Animation Classes */
         .fade-in {
             animation: fadeIn 0.3s ease-in-out;
         }
@@ -506,26 +471,34 @@
             padding: 2rem;
             color: #ef4444;
         }
+
+        .category-label {
+            display: inline-block;
+            padding: 4px 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            text-transform: capitalize;
+        }
     </style>
 </head>
 <body>
-    <!-- Tab Navigation -->
     <div class="container">
         <div class="tab-nav">
-            <a href="opennana-framework.html" class="tab-btn active">🎨 Nano Gallery</a>
-            <a href="../gpt/gpt-framework.html" class="tab-btn">🤖 GPT Gallery</a>
+            <a href="../nano/opennana-framework.html" class="tab-btn">🎨 Nano Gallery</a>
+            <a href="gpt-framework.html" class="tab-btn active">🤖 GPT Gallery</a>
         </div>
     </div>
 
-    <!-- Header Section -->
     <header class="header">
         <div class="container">
-            <h1>Nano Banana提示词图库</h1>
-            <p>浏览、筛选模型提示词案例库，<br>快速复制提示词，探索灵感。</p>
+            <h1>GPT Image 2 Prompts</h1>
+            <p>Awesome Collection of High-Quality Prompts & Examples<br>高质量提示词与案例精选合集</p>
         </div>
     </header>
 
-    <!-- Search and Filter Section -->
     <div class="container">
         <div class="search-section">
             <div class="search-bar">
@@ -533,36 +506,27 @@
                     <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
-                    <input type="text" class="search-input" placeholder="搜索关键词输入、标题或提示词..." id="searchInput">
+                    <input type="text" class="search-input" placeholder="搜索提示词或案例标题..." id="searchInput">
                 </div>
                 <button class="clear-button" id="clearButton">清除筛选</button>
                 <div class="card-count-qr-container">
                     <span class="card-count" id="cardCount">共 0/0 个案例</span>
-                    <div class="header-qr-code">
-                        <img src="https://xiaozhi-images.oss-cn-beijing.aliyuncs.com/user/2025/11/15/53d494f2-c129-4f91-b12f-94ec560c903b.jpg" 
-                             alt="QR Code" 
-                             title="扫码查看完整图库">
-                    </div>
                 </div>
             </div>
             
             <div class="category-chips" id="categoryChips">
-                <!-- Categories will be populated by JavaScript -->
             </div>
         </div>
 
-        <!-- Cards Grid -->
         <div class="cards-grid" id="cardsGrid">
             <div class="loading">正在加载数据...</div>
         </div>
 
-        <!-- Empty State -->
         <div class="empty-state hidden" id="emptyState">
             <p>没有找到匹配的案例</p>
         </div>
     </div>
 
-    <!-- Modal for Card Details -->
     <div class="modal-overlay hidden" id="modalOverlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -574,13 +538,19 @@
                 </button>
             </div>
             <div class="modal-body" id="modalBody">
-                <!-- Modal content will be populated by JavaScript -->
             </div>
         </div>
     </div>
 
     <script>
-        // Data structure based on extracted JSON
+        const categoryMap = {
+            'portrait': '人物肖像',
+            'poster': '海报插画',
+            'character': '角色设计',
+            'ui': 'UI设计',
+            'comparison': '社区案例'
+        };
+
         let allCards = [];
         let filteredCards = [];
         let categories = [];
@@ -592,34 +562,29 @@
         window.FALLBACK_SMALL = FALLBACK_SMALL;
         window.FALLBACK_LARGE = FALLBACK_LARGE;
 
-        // Load data from JSON file
         async function loadData() {
             try {
-                // Load the extracted data
-                const response = await fetch('data/nano_prompts_20251118_183432.json', { cache: 'no-store' });
+                const response = await fetch('data/gpt_images_prompt.json', { cache: 'no-store' });
                 const data = await response.json();
 
                 const raw = Array.isArray(data) ? data : (data.prompts || []);
 
                 allCards = raw
                     .map(item => {
-                        const tags = Array.isArray(item.tags)
-                            ? item.tags
-                            : (item.category ? item.category.split(',').map(s => s.trim()).filter(Boolean) : []);
                         return {
                             title: item.title || '',
                             imageUrl: item.imageUrl || item.image || '',
-                            tags,
-                            prompt1: item.prompt1 || '',
-                            prompt2: item.prompt2 || ''
+                            category: item.category || '',
+                            categoryLabel: categoryMap[item.category] || item.category,
+                            prompt: item.prompt || ''
                         };
                     })
                     .filter(card => card.imageUrl && card.imageUrl.trim() !== '' && card.title && card.title.trim() !== '');
 
                 const categorySet = new Set();
                 allCards.forEach(card => {
-                    if (card.tags) {
-                        card.tags.forEach(tag => categorySet.add(tag));
+                    if (card.category) {
+                        categorySet.add(card.category);
                     }
                 });
                 categories = Array.from(categorySet).sort();
@@ -628,83 +593,47 @@
                 renderCategories();
                 renderCards();
                 updateCardCount();
-                const stats = document.getElementById('resultStats');
-                if (stats) {
-                    stats.textContent = `已加载 ${allCards.length} 条数据`;
-                }
             } catch (error) {
                 console.error('Error loading data:', error);
                 document.getElementById('cardsGrid').innerHTML = '<div class="error">加载数据失败</div>';
             }
         }
 
-        // Render category chips
         function renderCategories() {
-            const container = document.getElementById('categoryChips');
-            container.innerHTML = '';
-            
-            // Show first 10 categories
-            categories.slice(0, 10).forEach(category => {
-                const chip = document.createElement('button');
-                chip.className = 'category-chip';
-                chip.textContent = category;
-                chip.onclick = () => toggleCategory(category);
-                container.appendChild(chip);
-            });
-            
-            // Add "展开" button if there are more categories
-            if (categories.length > 10) {
-                const expandButton = document.createElement('button');
-                expandButton.className = 'category-chip';
-                expandButton.textContent = '展开';
-                expandButton.onclick = () => showAllCategories();
-                container.appendChild(expandButton);
-            }
-        }
-
-        // Toggle category selection
-        function toggleCategory(category) {
-            selectedCategory = selectedCategory === category ? null : category;
-            updateCategoryUI();
-            filterCards();
-        }
-
-        // Update category chip UI
-        function updateCategoryUI() {
-            const chips = document.querySelectorAll('.category-chip');
-            chips.forEach(chip => {
-                if (chip.textContent !== '展开') {
-                    chip.classList.toggle('active', chip.textContent === selectedCategory);
-                }
-            });
-        }
-
-        // Show all categories (expand)
-        function showAllCategories() {
             const container = document.getElementById('categoryChips');
             container.innerHTML = '';
             
             categories.forEach(category => {
                 const chip = document.createElement('button');
                 chip.className = 'category-chip';
-                chip.textContent = category;
+                chip.textContent = categoryMap[category] || category;
                 chip.onclick = () => toggleCategory(category);
                 container.appendChild(chip);
             });
-            
-            updateCategoryUI();
         }
 
-        // Filter cards based on search and category
+        function toggleCategory(category) {
+            selectedCategory = selectedCategory === category ? null : category;
+            updateCategoryUI();
+            filterCards();
+        }
+
+        function updateCategoryUI() {
+            const chips = document.querySelectorAll('.category-chip');
+            chips.forEach(chip => {
+                const categoryKey = Object.keys(categoryMap).find(key => categoryMap[key] === chip.textContent) || chip.textContent;
+                chip.classList.toggle('active', categoryKey === selectedCategory);
+            });
+        }
+
         function filterCards() {
             filteredCards = allCards.filter(card => {
                 const matchesSearch = !searchTerm || 
                     card.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    (card.tags && card.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))) ||
-                    (card.prompt1 && card.prompt1.toLowerCase().includes(searchTerm.toLowerCase())) ||
-                    (card.prompt2 && card.prompt2.toLowerCase().includes(searchTerm.toLowerCase()));
+                    (card.category && (card.category.toLowerCase().includes(searchTerm.toLowerCase()) || (categoryMap[card.category] && categoryMap[card.category].toLowerCase().includes(searchTerm.toLowerCase())))) ||
+                    (card.prompt && card.prompt.toLowerCase().includes(searchTerm.toLowerCase()));
                 
-                const matchesCategory = !selectedCategory || (card.tags && card.tags.includes(selectedCategory));
+                const matchesCategory = !selectedCategory || (card.category === selectedCategory);
                 
                 return matchesSearch && matchesCategory;
             });
@@ -713,7 +642,6 @@
             updateCardCount();
         }
 
-        // Render cards grid
         function renderCards() {
             const container = document.getElementById('cardsGrid');
             const emptyState = document.getElementById('emptyState');
@@ -733,14 +661,11 @@
             });
         }
 
-        // Create individual card element
         function createCardElement(card, index) {
             const cardDiv = document.createElement('div');
             cardDiv.className = 'card fade-in';
             cardDiv.onclick = () => showCardDetails(card);
             
-            const row = Math.floor(index / 5) + 1;
-            const col = (index % 5) + 1;
             const fileName = (card.imageUrl || '').split('/').pop() || '';
             const localSrc = fileName ? `assets/images/${fileName}` : window.FALLBACK_SMALL;
             const imgSrc = localSrc;
@@ -755,7 +680,7 @@
                 <div class="card-content">
                     <h3 class="card-title">${card.title}</h3>
                     <div class="card-tags">
-                        ${card.tags ? card.tags.map(tag => `<span class="card-tag">${tag}</span>`).join('') : ''}
+                        ${card.category ? `<span class="card-tag">${card.categoryLabel || card.category}</span>` : ''}
                     </div>
                 </div>
             `;
@@ -763,7 +688,6 @@
             return cardDiv;
         }
 
-        // Show card details in modal
         function showCardDetails(card) {
             const modal = document.getElementById('modalOverlay');
             const title = document.getElementById('modalTitle');
@@ -780,28 +704,18 @@
                      class="modal-image"
                      onerror="this.src=window.FALLBACK_LARGE">
                 
-                ${card.prompt1 ? `
+                ${card.category ? `
                     <div class="prompt-section">
-                        <h4 class="prompt-title">提示词 1 (英文)</h4>
-                        <div class="prompt-text">${card.prompt1}</div>
-                        <button class="copy-button" data-text="${encodeURIComponent(card.prompt1)}" onclick="copyPromptFromData(this)">复制提示词</button>
+                        <h4 class="prompt-title">分类</h4>
+                        <span class="category-label">${card.categoryLabel || card.category}</span>
                     </div>
                 ` : ''}
                 
-                ${card.prompt2 ? `
+                ${card.prompt ? `
                     <div class="prompt-section">
-                        <h4 class="prompt-title">提示词 2 (中文)</h4>
-                        <div class="prompt-text">${card.prompt2}</div>
-                        <button class="copy-button" data-text="${encodeURIComponent(card.prompt2)}" onclick="copyPromptFromData(this)">复制提示词</button>
-                    </div>
-                ` : ''}
-                
-                ${card.tags && card.tags.length > 0 ? `
-                    <div class="prompt-section">
-                        <h4 class="prompt-title">标签</h4>
-                        <div class="category-chips">
-                            ${card.tags.map(tag => `<span class="category-chip">${tag}</span>`).join('')}
-                        </div>
+                        <h4 class="prompt-title">提示词 (Prompt)</h4>
+                        <div class="prompt-text">${card.prompt}</div>
+                        <button class="copy-button" data-text="${encodeURIComponent(card.prompt)}" onclick="copyPromptFromData(this)">复制提示词</button>
                     </div>
                 ` : ''}
             `;
@@ -809,7 +723,6 @@
             modal.classList.remove('hidden');
         }
 
-        // Copy text to clipboard
         function copyPromptFromData(button) {
             const text = decodeURIComponent(button.dataset.text || '');
             copyToClipboard(text, button);
@@ -855,20 +768,16 @@
             }
         }
 
-        // Update card count display
         function updateCardCount() {
             document.getElementById('cardCount').textContent = `共 ${filteredCards.length}/${allCards.length} 个案例`;
         }
 
-        // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
-            // Search input
             document.getElementById('searchInput').addEventListener('input', function(e) {
                 searchTerm = e.target.value;
                 filterCards();
             });
             
-            // Clear button
             document.getElementById('clearButton').addEventListener('click', function() {
                 searchTerm = '';
                 selectedCategory = null;
@@ -877,23 +786,19 @@
                 filterCards();
             });
             
-            // Modal close
             document.getElementById('modalClose').addEventListener('click', function() {
                 document.getElementById('modalOverlay').classList.add('hidden');
             });
             
-            // Close modal on overlay click
             document.getElementById('modalOverlay').addEventListener('click', function(e) {
                 if (e.target === this) {
                     this.classList.add('hidden');
                 }
             });
             
-            // Load data
             loadData();
         });
 
-        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 document.getElementById('modalOverlay').classList.add('hidden');
