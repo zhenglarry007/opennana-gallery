@@ -179,17 +179,34 @@ def copy_image(image_source, dest_index):
     dest_filename = f"{dest_index}.jpg"
     dest_path = IMAGES_DIR / dest_filename
     
+    if dest_path.exists():
+        return f"✅ 目标文件已存在: {dest_filename}"
+    
+    filename = os.path.basename(image_source)
+    
+    if '/' in image_source and 'assets/images' in image_source:
+        pass
+    
     if os.path.isfile(image_source):
         shutil.copy2(image_source, dest_path)
-        return f"已复制: {os.path.basename(image_source)} → {dest_filename}"
+        return f"✅ 已复制: {os.path.basename(image_source)} → {dest_filename}"
     
-    if os.path.basename(image_source) == image_source:
-        src_path = IMAGES_DIR / image_source
-        if src_path.exists() and str(src_path) != str(dest_path):
+    src_path = IMAGES_DIR / filename
+    if src_path.exists():
+        if str(src_path) != str(dest_path):
             shutil.copy2(src_path, dest_path)
-            return f"已复制: {image_source} → {dest_filename}"
+            return f"✅ 已复制: {filename} → {dest_filename}"
+        else:
+            return f"✅ 文件已存在: {filename}"
     
-    return f"跳过: {image_source} (文件不存在)"
+    name_without_ext = os.path.splitext(filename)[0]
+    for ext in ['.jpg', '.jpeg', '.JPG', '.JPEG']:
+        alt_path = IMAGES_DIR / f"{name_without_ext}{ext}"
+        if alt_path.exists():
+            shutil.copy2(alt_path, dest_path)
+            return f"✅ 已复制 (扩展名修正): {alt_path.name} → {dest_filename}"
+    
+    return f"⚠️  未找到图片: {image_source} (手动放置: {dest_filename})"
 
 
 def import_from_json(json_path):
